@@ -4,6 +4,13 @@ body {
     padding: 0;
 }
 
+#wg-api-football-games{
+    padding-left: 0%;
+    padding-top: 1%;
+    width: 20%;
+}
+
+
 .topmenu{
     padding-left: 9.5%;
     padding-right: 9.5%;
