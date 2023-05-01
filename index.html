@@ -7,7 +7,7 @@
     <header>
         <h1>AWIS FB</h1>
     </header>
-
+<!--
 <script
    type="module"
    src="https://widgets.api-sports.io/2.0.3/widgets.js">
@@ -55,9 +55,43 @@
     data-modal-standings="true"
     data-modal-show-logos="true">
 </div>
+ -->
+
+
     <main>
-     
+     <h1>hola</h1>
     </main>
+
+
+
+<script>
+
+fetch("https://v3.football.api-sports.io/teams?id=33", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "v3.football.api-sports.io",
+		"x-rapidapi-key": "026ee852cd568beb7c2a195d49356a02"
+	}
+})
+.then(response => response.json())
+
+.then(data => console.log(data))
+
+.then(data => {
+    data.For (team => {
+        const markup = `<li>${team.name}</li>`;
+
+        document.querySelector('h1').insertAdjacentHTML('beforeend', markup)
+    })
+})
+
+.catch(err => {
+	console.log(err);
+});
+
+</script>
+
+
     <footer>
         <p>&copy; 2023 Football Team Stats. All rights reserved.</p>
     </footer>
