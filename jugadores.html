@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>AWIS FB</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>AWIS FB</h1>
+    </header>
+
+    <main>
+        <nav>
+            <ul>
+                <li class="topmenu"><a href=".//index.html">Inicio</a></li>
+                <li class="topmenu"><a href=".//equipos.html">Equipos</a></li>
+                <li class="topmenu"><a href="">Jugadores</a></li>
+                <li class="topmenu"><a href="">Partidos</a></li>
+            </ul>
+
+
+            <div>
+                <img id="player-photo" src="" alt="Player Photo" />
+                <h2><span id="player-name"></span> (<span id="player-age"></span>)</h2>
+            
+            </div>
+
+<script>
+
+fetch("https://v3.football.api-sports.io/players?id=276&season=2019", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "v3.football.api-sports.io",
+		"x-rapidapi-key": "026ee852cd568beb7c2a195d49356a02"
+	}
+})
+.then(response => response.json())
+		.then(data => {
+			const player = data.response[0].player;
+			document.getElementById('player-photo').src = player.photo;
+			document.getElementById('player-name').textContent = `${player.firstname} ${player.lastname}`;
+			document.getElementById('player-age').textContent = player.age;
+			
+		})
+
+</script>
+
+        
+
+    <footer>
+        <p>&copy; 2023 Football Team Stats. All rights reserved.</p>
+    </footer>
+</body>
+</html>
