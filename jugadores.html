@@ -24,26 +24,8 @@
             
             </div>
 
-<script>
 
-fetch("https://v3.football.api-sports.io/players?id=276&season=2019", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "v3.football.api-sports.io",
-		"x-rapidapi-key": "026ee852cd568beb7c2a195d49356a02"
-	}
-})
-.then(response => response.json())
-		.then(data => {
-			const player = data.response[0].player;
-			document.getElementById('player-photo').src = player.photo;
-			document.getElementById('player-name').textContent = `${player.firstname} ${player.lastname}`;
-			document.getElementById('player-age').textContent = player.age;
-			
-		})
-
-</script>
-
+            <script src=".//js.js"></script>
         
 
     <footer>
