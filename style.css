@@ -11,12 +11,22 @@ body {
 }
 
 
+#navul{
+    padding-bottom: 2%;
+}
+
+a {
+    color: #000; /* Set the desired text color */
+    text-decoration: none; /* Remove the underline */
+  }
+
 .topmenu{
-    padding-left: 7.5%;
-    padding-right: 7.5%;
+    width: 3%;
+    padding-left: 7%;
+    padding-right: 7%;
     padding-top: .5%;
     padding-bottom: .5%;
-    background-color: #ffffff;
+    background-color: #d6d6d6;
     transition: 0.5s;
 }
 
