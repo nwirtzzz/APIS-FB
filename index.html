@@ -14,14 +14,66 @@
                 <a href=".//index.html"><li class="topmenu">Inicio</li></a>
                 <a href=".//equipos.html"><li class="topmenu">Equipos</li></a>
                 <a href=".//jugadores.html"><li class="topmenu">Jugadores</li></a>
-                <a href=""><li class="topmenu">Partidos</li></a>
+                
                 <a href="registro.html"><li class="topmenu">Registro</li></a>
             </ul>
+        </nav>
 
+        <div id="teamNames"></div>
+        <div id="teamLogos"></div>
+        <div id="goals"></div>
 
+    </main>
 
     <footer>
         <p>&copy; 2023 Football Team Stats. All rights reserved.</p>
     </footer>
+
+    <script>
+fetch("https://v3.football.api-sports.io/fixtures/headtohead?h2h=36-34", {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-host": "v3.football.api-sports.io",
+        "x-rapidapi-key": "25a627c54b3da162c2377c2add3f8678"
+    }
+})
+.then(response => response.json())
+.then(data => {
+    const lastFixture = data.response[data.response.length - 1];
+    const awayTeamName = lastFixture.teams.away.name;
+    const awayTeamLogo = lastFixture.teams.away.logo;
+    const homeTeamName = lastFixture.teams.home.name;
+    const homeTeamLogo = lastFixture.teams.home.logo;
+    const awayGoals = lastFixture.goals.away;
+    const homeGoals = lastFixture.goals.home;
+
+    const teamNamesContainer = document.getElementById('teamNames');
+    const teamLogosContainer = document.getElementById('teamLogos');
+
+    const awayTeamNameElement = document.createElement('p');
+    awayTeamNameElement.textContent = awayTeamName;
+    teamNamesContainer.appendChild(awayTeamNameElement);
+
+    const awayTeamLogoElement = document.createElement('img');
+    awayTeamLogoElement.src = awayTeamLogo;
+    teamLogosContainer.appendChild(awayTeamLogoElement);
+
+    const homeTeamNameElement = document.createElement('p');
+    homeTeamNameElement.textContent = homeTeamName;
+    teamNamesContainer.appendChild(homeTeamNameElement);
+
+    const homeTeamLogoElement = document.createElement('img');
+    homeTeamLogoElement.src = homeTeamLogo;
+    teamLogosContainer.appendChild(homeTeamLogoElement);
+
+    const goalsContainer = document.getElementById('goals');
+    const goalsElement = document.createElement('p');
+    goalsElement.textContent = ` ${awayTeamName} ${awayGoals}  -  ${homeGoals} ${homeTeamName}`;
+    goalsContainer.appendChild(goalsElement);
+})
+.catch(err => {
+    console.log(err);
+});
+    </script>
 </body>
 </html>
