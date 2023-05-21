@@ -2,8 +2,6 @@
 const selectedTeam = JSON.parse(localStorage.getItem('selectedTeam'));
 
 if (selectedTeam) {
-  console.log(selectedTeam); // Debugging statement
-
   const teamDetailsContainer = document.getElementById('team-details');
 
   // Create elements to display team details
@@ -20,10 +18,10 @@ if (selectedTeam) {
   teamFoundedElement.textContent = `Founded: ${selectedTeam.founded}`;
 
   const teamCityElement = document.createElement('p');
-  teamCityElement.textContent = `City: ${selectedTeam.venue.city}`;
+  teamCityElement.textContent = `City: ${selectedTeam.city}`;
 
   const teamImage = document.createElement('img');
-  teamImage.src = selectedTeam.venue.image;
+  teamImage.src = selectedTeam.image;
 
   // Append elements to the team details container
   teamDetailsContainer.appendChild(teamLogo);
@@ -32,12 +30,10 @@ if (selectedTeam) {
   teamDetailsContainer.appendChild(teamFoundedElement);
   teamDetailsContainer.appendChild(teamCityElement);
   teamDetailsContainer.appendChild(teamImage);
-} else {
-  console.log('No team data found'); // Debugging statement
 
-  // If no team data is found or there is an error, redirect to the homepage
+  // Remove the stored team data from local storage
+  localStorage.removeItem('selectedTeam');
+} else {
+  // If no team data is found, redirect to the homepage
   window.location.href = 'index.html';
 }
-
-// Remove the stored team data from local storage
-localStorage.removeItem('selectedTeam');
