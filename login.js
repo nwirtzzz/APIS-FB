@@ -87,7 +87,7 @@ try {
   console.error(e);
 }
 
-let db = conn.db("Facur");
+let db = conn.db("Facur"); // cambie austral por Facur
 
 export default db;
 
