@@ -73,17 +73,23 @@ app.listen(port, () => {
 const mongoose = require('mongoose');
 
 // Conexión a la base de datos
-mongoose.connect('mongodb://localhost/Facur', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import { MongoClient } from "mongodb";
 
-// Verificar la conexión exitosa
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Error de conexión a MongoDB:'));
-db.once('open', () => {
-  console.log('Conexión exitosa a la base de datos MongoDB');
-});
+const connectionString = "mongodb+srv://facur:Facundo10@facur.xn9z68j.mongodb.net/";
+
+const client = new MongoClient(connectionString);
+
+let conn;
+try {
+  // Try
+  conn = await client.connect();
+} catch(e) {
+  console.error(e);
+}
+
+let db = conn.db("Facur");
+
+export default db;
 
 
 //REGISTRO ruta hacia el
