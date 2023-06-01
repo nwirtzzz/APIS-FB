@@ -6,7 +6,7 @@ for (let i = 0; i < teamIds.length; i++) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "026ee852cd568beb7c2a195d49356a02"
+      "x-rapidapi-key": "7bdb194d2d9db9ed325d16ffdca49fd7"
     }
   })
   .then(response => response.json())
