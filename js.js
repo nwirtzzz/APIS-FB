@@ -6,7 +6,7 @@ for (let i = 0; i < teamIds.length; i++) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "7bdb194d2d9db9ed325d16ffdca49fd7"
+      "x-rapidapi-key": "94861d9837c67ac2b84dff859ac9c73c"
     }
   })
   .then(response => response.json())
@@ -46,7 +46,7 @@ fetch("https://v3.football.api-sports.io/players?id=276&season=2019", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "v3.football.api-sports.io",
-		"x-rapidapi-key": "026ee852cd568beb7c2a195d49356a02"
+		"x-rapidapi-key": "94861d9837c67ac2b84dff859ac9c73c"
 	}
 })
 .then(response => response.json())
