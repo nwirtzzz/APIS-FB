@@ -14,73 +14,22 @@
                 <a href=".//index.html"><li class="topmenu">Inicio</li></a>
                 <a href=".//equipos.html"><li class="topmenu">Equipos</li></a>
                 <a href=".//jugadores.html"><li class="topmenu">Jugadores</li></a>
-      
+                <a href=""><li class="topmenu">Partidos</li></a>
                 <a href="registro.html"><li class="topmenu">Registro</li></a>
             </ul>
 
 
+            <div>
+                <img id="player-photo" src="" alt="Player Photo" />
+                <h2><span id="player-name"></span> (<span id="player-age"></span>)</h2>
+                <button id="player-details-button">View Details</button>
+            </div>
             
-    
-    
-        <head>
-              <title>Fetch Players</title>
-              <style>
-                /* CSS styles for player container */
-                .player-container {
-                  margin-bottom: 20px;
-                  padding: 10px;
-                  border: 1px solid #ccc;
-                }
-                .player-container img {
-                  width: 100px;
-                }
-              </style>
-            </head>
-            <body>
-              <h1>Player Information</h1>
-              <div id="players-container"></div>
-            
-              <script>
-                const playerIds = [278, 279, 280, 281, 282]; // Array of player IDs
 
-const fetchPlayerData = (id) => {
-  return fetch(`https://v3.football.api-sports.io/players?id=${id}&season=2019`, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "9dd0e7569da3d86a764f524963c18e67"
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      return data.response[0].player;
-    });
-};
 
-const fetchPlayers = async () => {
-  const players = await Promise.all(playerIds.map(id => fetchPlayerData(id)));
-  console.log(players);
 
-  // Render player data on the page
-  players.forEach(player => {
-    const playerDiv = document.createElement('div');
-    playerDiv.innerHTML = `
-      <img src="${player.photo}" alt="Player Photo">
-      <h2>${player.firstname} ${player.lastname}</h2>
-      <p>Age: ${player.age}</p>
-    `;
-    document.getElementById('players-container').appendChild(playerDiv);
-  });
-};
-
-fetchPlayers();
-              </script>
-            </body>
-            </html>
-           
-            
+            <script src=".//js.js"></script>
         
-            
 
     <footer>
         <p>&copy; 2023 Football Team Stats. All rights reserved.</p>

@@ -1,6 +1,3 @@
-// KEY 026ee852cd568beb7c2a195d49356a02 // 9dd0e7569da3d86a764f524963c18e67 // 25a627c54b3da162c2377c2add3f8678 // fa4cc47689f0dcd9325410c6cdbd6d0d
-
-
 const teamIds = [33, 34, 35, 36, 37];
 
 for (let i = 0; i < teamIds.length; i++) {
@@ -9,27 +6,32 @@ for (let i = 0; i < teamIds.length; i++) {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "9dd0e7569da3d86a764f524963c18e67"
+      "x-rapidapi-key": "94861d9837c67ac2b84dff859ac9c73c"
     }
   })
   .then(response => response.json())
   .then(data => {
     const team = data.response[0].team;
-    console.log(data);
+
     const teamName = team.name;
     const teamLogoUrl = team.logo;
     const teamLogo = document.createElement('img');
     teamLogo.src = teamLogoUrl;
+
     const teamContainer = document.createElement('div');
     teamContainer.classList.add('team-container');
+
     const teamNameElement = document.createElement('h2');
     teamNameElement.textContent = teamName;
+
     teamContainer.appendChild(teamNameElement);
     teamContainer.appendChild(teamLogo);
+    
+    // Add event listener to each team container
     teamContainer.addEventListener('click', () => {
-     
+      // Store the team data in local storage
       localStorage.setItem('selectedTeam', JSON.stringify(team));
-      
+      // Redirect to the separate page
       window.location.href = 'team.html';
     });
 
@@ -40,59 +42,67 @@ for (let i = 0; i < teamIds.length; i++) {
   });
 }
 
+fetch("https://v3.football.api-sports.io/players?id=276&season=2019", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "v3.football.api-sports.io",
+		"x-rapidapi-key": "94861d9837c67ac2b84dff859ac9c73c"
+	}
+})
+.then(response => response.json())
+		.then(data => {
+      console.log(data)
+			const player = data.response[0].player;
+			document.getElementById('player-photo').src = player.photo;
+			document.getElementById('player-name').textContent = `${player.firstname} ${player.lastname}`;
+			document.getElementById('player-age').textContent = player.age;
+			
+		})
 
-
-
-
-const playerIds = [278, 279, 280, 281, 282]; // Array of player IDs
-
-const fetchPlayerData = (id) => {
-  return fetch(`https://v3.football.api-sports.io/players?id=${id}&season=2019`, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "v3.football.api-sports.io",
-      "x-rapidapi-key": "9dd0e7569da3d86a764f524963c18e67"
-    }
-  })
+// Retrieve the player details from the API and navigate to the details page
+function fetchPlayerDetails() {
+  // Make an API request to fetch the player details
+  fetch("https://v3.football.api-sports.io/players?id=276&season=2019", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "v3.football.api-sports.io",
+		"x-rapidapi-key": "94861d9837c67ac2b84dff859ac9c73c"
+	}})
     .then(response => response.json())
     .then(data => {
-      return data.response[0].player;
-    });
-};
+      // Extract the required player details from the API response
+      console.log(data);
 
-const fetchPlayers = async () => {
-  const players = await Promise.all(playerIds.map(id => fetchPlayerData(id)));
-  console.log(players);
+      const player = data.response[0].player;
+      const firstName = player.firstname;
+      const lastName = player.lastname;
+      const age = player.age;
+      const height = player.height;
+      const nationality = player.nationality;
+      const photo = player.photo;
+      const weight = player.weight;
+      const logo = player.statistics[0].team.logo;
 
-  // Render player data on the page
-  players.forEach(player => {
-    const playerDiv = document.createElement('div');
-    playerDiv.innerHTML = `
-      <img src="${player.photo}" alt="Player Photo">
-      <h2>${player.firstname} ${player.lastname}</h2>
-      <p>Age: ${player.age}</p>
-    `;
-    document.getElementById('players-container').appendChild(playerDiv);
-  });
-};
+      // Save the player details in sessionStorage to access them on the details page
+      sessionStorage.setItem('playerDetails', JSON.stringify({
+        firstName,
+        lastName,
+        age,
+        height,
+        nationality,
+        photo,
+        weight,
+        logo
+        
+      }));
 
-fetchPlayers();
-
-
-
-    fetch("https://v3.football.api-sports.io/fixtures/headtohead?h2h=33-34", {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "v3.football.api-sports.io",
-        "x-rapidapi-key": "9dd0e7569da3d86a764f524963c18e67"
-      }
+      // Navigate to the details page
+      window.location.href = 'details.html';
     })
-    .then(response => response.json())
-  .then(data => {
-    const team = data.response[0].team;
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
-    console.log(data);
-  })
-    .catch(err => {
-      console.log(err);
-    });    
+// Attach the click event listener to the button
+document.getElementById('player-details-button').addEventListener('click', fetchPlayerDetails);
