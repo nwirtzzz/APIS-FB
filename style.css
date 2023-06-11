@@ -10,9 +10,31 @@ body {
     width: 20%;
 }
 
-
+p{
+    font-size: larger;
+}
 #navul{
    padding-left: 22%; padding-bottom: 2%;
+}
+
+#team-logo{
+    height: 9%;
+    width: 5%;
+}
+
+
+#team-details{
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 5%;
+    background-color: #a7a7a7;
+    }
+
+#detailcont{
+padding-top: 2.5%;
+padding-bottom: 2.5%;
+padding-left: 5%;
+background-color: #a7a7a7;
 }
 
 a {
