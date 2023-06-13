@@ -15,9 +15,9 @@ fetch("https://v3.football.api-sports.io/players?id=278&season=2019", {
 			
 		})
 
-// Retrieve the player details from the API and navigate to the details page
+
 function fetchPlayerDetails() {
-  // Make an API request to fetch the player details
+
   fetch("https://v3.football.api-sports.io/players?id=278&season=2019", {
 	"method": "GET",
 	"headers": {
@@ -26,7 +26,7 @@ function fetchPlayerDetails() {
 	}})
     .then(response => response.json())
     .then(data => {
-      // Extract the required player details from the API response
+ 
       console.log(data);
 
       const player = data.response[0].player;
@@ -39,7 +39,7 @@ function fetchPlayerDetails() {
       const weight = player.weight;
       const logo = data.response[0].statistics[0].team.logo;
 
-      // Save the player details in sessionStorage to access them on the details page
+
       sessionStorage.setItem('playerDetails', JSON.stringify({
         firstName,
         lastName,
@@ -52,7 +52,7 @@ function fetchPlayerDetails() {
         
       }));
 
-      // Navigate to the details page
+
       window.location.href = 'details.html';
     })
     .catch(error => {
@@ -60,5 +60,5 @@ function fetchPlayerDetails() {
     });
 }
 
-// Attach the click event listener to the button
+
 document.getElementById('player-photo').addEventListener('click', fetchPlayerDetails);
