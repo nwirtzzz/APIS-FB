@@ -27,11 +27,11 @@ for (let i = 0; i < teamIds.length; i++) {
     teamContainer.appendChild(teamNameElement);
     teamContainer.appendChild(teamLogo);
     
-    // Add event listener to each team container
+  
     teamContainer.addEventListener('click', () => {
-      // Store the team data in local storage
+
       localStorage.setItem('selectedTeam', JSON.stringify(team));
-      // Redirect to the separate page
+
       window.location.href = 'team.html';
     });
 
