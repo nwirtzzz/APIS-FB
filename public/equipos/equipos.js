@@ -1,4 +1,4 @@
-const teamIds = [33, 34];
+const teamIds = [33, 34, 35, 36];
 
 for (let i = 0; i < teamIds.length; i++) {
   const teamId = teamIds[i];
