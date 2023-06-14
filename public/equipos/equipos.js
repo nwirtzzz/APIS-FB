@@ -32,7 +32,7 @@ for (let i = 0; i < teamIds.length; i++) {
 
       localStorage.setItem('selectedTeam', JSON.stringify(team));
 
-      window.location.href = 'team.html';
+      window.location.href = '/team';
     });
 
     document.getElementById('teams').appendChild(teamContainer);
